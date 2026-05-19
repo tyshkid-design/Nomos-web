@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nomos AI — My Wakili | Kenya's Legal Intelligence Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- ═══════════════════ COMMAND BAR ═══════════════════ -->
+<div id="cmdOverlay" class="cmd-overlay" onclick="closeCmdOverlay(event)">
+  <div class="cmd-box">
+    <div class="cmd-head">
+      <span style="opacity:.5;font-size:1rem">⌘</span>
+      <input id="cmdInput" type="text" placeholder="Search legal terms, navigate, ask Nomos AI…" oninput="filterCmd(this.value)" onkeydown="cmdKeyNav(event)" autocomplete="off"/>
+      <span class="cmd-esc" onclick="hideCmd()">ESC</span>
+    </div>
+    <div class="cmd-body" id="cmdBody">
+      <div class="cmd-sec">Quick Actions</div>
+      <div class="cmd-row" onclick="showPage('login')"><div class="cmd-row-ico" style="background:rgba(201,168,76,.12)">🔑</div><span>Login to Nomos AI</span></div>
+      <div class="cmd-row" onclick="showPage('usertype')"><div class="cmd-row-ico" style="background:rgba(34,197,94,.1)">🚀</div><span>Get Started — Create Account</span></div>
+      <div class="cmd-row" onclick="showPage('dashboard')"><div class="cmd-row-ico" style="background:rgba(37,77,114,.3)">🗂</div><span>Open Dashboard</span></div>
+      <div class="cmd-row" onclick="scrollToSection('services')"><div class="cmd-row-ico" style="background:rgba(14,122,140,.2)">⚖️</div><span>View Services</span></div>
+      <div class="cmd-sec">Legal Dictionary</div>
+      <div class="cmd-row"><div class="cmd-row-ico" style="background:rgba(201,168,76,.08)">📖</div><div><strong style="color:#fff">Habeas Corpus</strong> — Right to appear before a court</div></div>
+      <div class="cmd-row"><div class="cmd-row-ico" style="background:rgba(201,168,76,.08)">📖</div><div><strong style="color:#fff">Locus Standi</strong> — Legal standing to bring an action</div></div>
+      <div class="cmd-row"><div class="cmd-row-ico" style="background:rgba(201,168,76,.08)">📖</div><div><strong style="color:#fff">Prima Facie</strong> — Evidence accepted at face value</div></div>
+      <div class="cmd-row"><div class="cmd-row-ico" style="background:rgba(201,168,76,.08)">📖</div><div><strong style="color:#fff">Pro Bono</strong> — Legal work done without charge</div></div>
+    </div>
+    <div class="cmd-foot"><span>↑↓ navigate</span><span>↵ select</span><span>ESC close</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════ NAVBAR ═══════════════════ -->
+<nav id="navbar">
+  <div class="nav-logo" onclick="showPage('landing')">
+    <div class="logo-shield">⚖</div>
+    <span class="logo-wordmark">Nomos<em>AI</em></span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li class="nav-link-item"><a href="#" onclick="scrollToSection('services')">Services</a></li>
+    <li class="nav-link-item"><a href="#" onclick="scrollToSection('user-types')">Who We Serve</a></li>
+    <li class="nav-link-item"><a href="#" onclick="scrollToSection('how')">How It Works</a></li>
+    <li class="nav-link-item"><a href="#" onclick="scrollToSection('probono')">Pro-Bono</a></li>
+    <li class="nav-link-item"><a href="#" onclick="scrollToSection('contact')">Contact</a></li>
+  </ul>
+  <div class="nav-actions" id="navActions">
+    <button class="cmd-bar-btn" onclick="showCmd()">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="currentColor" stroke-width="1.3"/><path d="M9 9l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      Search <kbd>⌘K</kbd>
+    </button>
+    <button class="btn btn-ghost" onclick="showPage('login')">Login</button>
+    <button class="btn btn-gold" onclick="showPage('usertype')">Get Started</button>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: LANDING
+═══════════════════════════════════════════════════ -->
+<div class="page active" id="page-landing">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow hg1"></div>
+    <div class="hero-glow hg2"></div>
+    <div class="hero-glow hg3"></div>
+  </div>
+  <div class="container hero-inner">
+    <div data-reveal>
+      <div class="hero-eyebrow"><div class="live-dot"></div>Kenya's AI Legal Intelligence Platform · Since 2024</div>
+      <h1 class="hero-title">
+        Justice,<br/>
+        <span class="line2">Intelligently</span><br/>
+        <span class="line3">Delivered.</span>
+      </h1>
+      <p class="hero-sub">Nomos AI — My Wakili — gives every Kenyan citizen, legal practitioner, and institution a smart, swift, and secure legal companion powered by generative AI and the Kenya Law corpus.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-gold lg" onclick="showPage('usertype')">⚡ Get Started Free</button>
+        <button class="btn btn-outline lg" onclick="showCmd()"><span style="opacity:.7">⌘</span> Ask Nomos AI</button>
+      </div>
+      <div class="hero-trust">
+        <div class="ht-stat"><strong>50K+</strong><span>Cases Analysed</span></div>
+        <div class="ht-div"></div>
+        <div class="ht-stat"><strong>100+</strong><span>Lawyers</span></div>
+        <div class="ht-div"></div>
+        <div class="ht-stat"><strong>14</strong><span>Counties</span></div>
+        <div class="ht-div"></div>
+        <div class="ht-stat"><strong>4.9★</strong><span>Rating</span></div>
+      </div>
+    </div>
+    <!-- Hero Visual -->
+    <div class="hero-visual" data-reveal data-delay="100">
+      <div class="hv-win glass">
+        <div class="hv-winbar">
+          <div class="win-dots"><span></span><span></span><span></span></div>
+          <span class="win-title-txt">Nomos AI — Legal Workspace</span>
+          <div class="win-status"><div class="live-dot sm"></div>Live</div>
+        </div>
+        <div class="hv-chat">
+          <div class="hv-msg">
+            <div class="hv-av ai">N</div>
+            <div class="hv-bub ai">
+              <p>Habari! I've reviewed <strong>your tenancy dispute</strong> and found 3 strong precedents:</p>
+              <div class="hv-cite">
+                <div class="cite-pill"><span class="cite-n">[1]</span>Otieno v. Nairobi CC — Illegal eviction, 2021</div>
+                <div class="cite-pill"><span class="cite-n">[2]</span>Tenant Act §47 — 30-day notice requirement</div>
+                <div class="cite-pill"><span class="cite-n">[3]</span>Constitution Art. 43 — Right to housing</div>
+              </div>
+              <div class="hv-str"><span class="str-lbl">Case Strength</span><div class="str-track"><div class="str-fill" style="width:76%"></div></div><span class="str-pct">76%</span></div>
+            </div>
+          </div>
+          <div class="hv-msg u">
+            <div class="hv-bub usr">What's my next legal step?</div>
+            <div class="hv-av usr">JM</div>
+          </div>
+          <div class="hv-typing">
+            <div class="hv-av ai">N</div>
+            <div class="typing-dots"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+        <div class="hv-inputbar">
+          <span style="color:var(--s400);cursor:pointer">📎</span>
+          <input type="text" placeholder="Ask Nomos AI anything…" readonly/>
+          <button class="hv-send">↑</button>
+        </div>
+      </div>
+      <div class="hv-badge glass">
+        <div class="hvb-icon">📊</div>
+        <div><div class="hvb-label">Success Probability</div><div class="hvb-val">76% <span class="hvb-trend">↑ 14%</span></div></div>
+      </div>
+      <div class="hv-docbadge glass">
+        <span style="font-size:1.1rem">📄</span>
+        <div><div class="docb-name">TenancyDispute_v2.pdf</div><div class="docb-meta">AI Analysed · 2 issues</div></div>
+        <div class="docb-chip">⚠ Review</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-bar"></div>Scroll to explore</div>
+</section>
+
+<!-- TRUST BAND -->
+<div class="trust-band">
+  <div class="container tb-inner">
+    <div class="tb-lbl">Trusted by leading institutions across East Africa</div>
+    <div class="tb-logos">
+      <div class="tb-pill">Law Society of Kenya</div>
+      <div class="tb-pill">KNCHR</div>
+      <div class="tb-pill">Kituo Cha Sheria</div>
+      <div class="tb-pill">ICJ Kenya</div>
+      <div class="tb-pill">Strathmore Law</div>
+      <div class="tb-pill">Legal Aid Kenya</div>
+      <div class="tb-pill">300+ NGO Partners</div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip" id="stats">
+  <div class="container">
+    <div class="stats-row">
+      <div class="sc" data-reveal><div class="sc-num" data-count="50000">50,000+</div><div class="sc-lbl">Cases Analysed</div><div class="sc-sub">Across 12 legal domains</div><div class="sc-bar"><div class="sc-fill" data-w="85"></div></div></div>
+      <div class="sc" data-reveal data-delay="100"><div class="sc-num" data-count="100">100+</div><div class="sc-lbl">Verified Lawyers</div><div class="sc-sub">14 counties served</div><div class="sc-bar"><div class="sc-fill" data-w="70"></div></div></div>
+      <div class="sc" data-reveal data-delay="200"><div class="sc-num">4.9★</div><div class="sc-lbl">Average Rating</div><div class="sc-sub">Verified user reviews</div><div class="sc-bar"><div class="sc-fill" data-w="98"></div></div></div>
+      <div class="sc" data-reveal data-delay="300"><div class="sc-num" data-count="300">300+</div><div class="sc-lbl">NGO Partners</div><div class="sc-sub">Justice network across Africa</div><div class="sc-bar"><div class="sc-fill" data-w="75"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES / BENTO -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="sec-header" data-reveal>
+      <div class="eyebrow">Platform Capabilities</div>
+      <h2 class="sec-title">Every Legal Need,<br/><em>One Platform</em></h2>
+      <p class="sec-body">From individual consultations to enterprise compliance — Nomos AI handles it all with AI precision.</p>
+    </div>
+    <div class="bento">
+
+      <!-- AI Legal Chat — SPAN 2 (no logo change requested) -->
+      <div class="bc span2" data-reveal>
+        <div class="bc-badge">Most Popular</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center">
+          <div>
+            <div class="bc-icon">💬</div>
+            <h3>AI Legal Chat</h3>
+            <p>Conversational legal guidance in English, Swahili, and 6 languages. Powered by the Kenya Law corpus with live case citations.</p>
+            <a class="bc-link" href="#" onclick="showPage('dashboard')">Open Chat Workspace →</a>
+          </div>
+          <div style="background:var(--surf3);border:1px solid var(--gbord);border-radius:var(--r16);padding:16px;display:flex;flex-direction:column;gap:10px">
+            <div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.14);border-radius:10px;padding:9px 13px;font-size:.78rem;color:var(--s200);align-self:flex-end;max-width:90%">Ninahitaji msaada kuhusu haki zangu za kukaa</div>
+            <div style="background:rgba(255,255,255,.05);border:1px solid var(--gbord);border-radius:10px;padding:9px 13px;font-size:.78rem;color:var(--s300);max-width:92%">Karibu! Chini ya Sheria ya Makazi ya Kenya (Cap. 301), haki zako za msingi za kukaa ni pamoja na…</div>
+            <div style="display:flex;gap:6px;margin-top:4px"><span style="font-size:.7rem;padding:3px 8px;border-radius:5px;background:rgba(255,255,255,.07);color:var(--s400);cursor:pointer">EN</span><span style="font-size:.7rem;padding:3px 8px;border-radius:5px;background:rgba(201,168,76,.14);border:1px solid rgba(201,168,76,.22);color:var(--g300)">SW</span><span style="font-size:.7rem;padding:3px 8px;border-radius:5px;background:rgba(255,255,255,.07);color:var(--s400)">FR</span><span style="font-size:.7rem;padding:3px 8px;border-radius:5px;background:rgba(255,255,255,.07);color:var(--s400)">AR</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Assessment (no logo change requested) -->
+      <div class="bc" data-reveal data-delay="100">
+        <div class="bc-icon">🔍</div>
+        <h3>Case Assessment</h3>
+        <p>AI-powered analysis of case strength, risk mapping, and success probability using 50,000+ Kenya Law precedents.</p>
+        <a class="bc-link" href="#" onclick="showPage('usertype')">Analyse Your Case →</a>
+        <div style="margin-top:16px;background:var(--surf3);border-radius:var(--r12);padding:14px">
+          <div style="font-size:.72rem;color:var(--s400);margin-bottom:8px">Case Strength Analysis</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="font-size:.75rem;color:var(--s400);width:100px">Legal Standing</div><div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden"><div style="height:100%;width:80%;background:linear-gradient(90deg,var(--g400),var(--g200));border-radius:3px"></div></div><span style="font-size:.72rem;color:var(--g300);font-weight:700">80%</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="font-size:.75rem;color:var(--s400);width:100px">Evidence</div><div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden"><div style="height:100%;width:62%;background:linear-gradient(90deg,var(--warn),#fbbf24);border-radius:3px"></div></div><span style="font-size:.72rem;color:var(--warn);font-weight:700">62%</span></div>
+        </div>
+      </div>
+
+      <!-- ★ DOCUMENT GENERATOR — with centered SVG logo -->
+      <div class="bc dark" data-reveal data-delay="200">
+        <div class="bc-logo-wrap">
+          <div class="bc-logo-svg" style="background:linear-gradient(135deg,rgba(201,168,76,.18),rgba(201,168,76,.06));border:1.5px solid rgba(201,168,76,.25)">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="3" width="14" height="18" rx="2" stroke="#c9a84c" stroke-width="1.6" fill="none"/>
+              <rect x="8" y="8" width="8" height="1.5" rx=".75" fill="#c9a84c"/>
+              <rect x="8" y="11.5" width="8" height="1.5" rx=".75" fill="#c9a84c"/>
+              <rect x="8" y="15" width="5" height="1.5" rx=".75" fill="#c9a84c"/>
+              <path d="M17 14l4 4-2.5.8-.7 2.5L14 17l3-3z" fill="rgba(201,168,76,.5)" stroke="#c9a84c" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+        <h3>Document Generator</h3>
+        <p>Create court-ready legal documents — tenancy agreements, NDAs, demand letters, affidavits — built on Kenyan law.</p>
+        <a class="bc-link" href="#" onclick="showPage('usertype')">Generate Documents →</a>
+      </div>
+
+      <!-- ★ PROBONO NETWORK — with centered SVG logo -->
+      <div class="bc accent" data-reveal data-delay="100">
+        <div class="bc-logo-wrap">
+          <div class="bc-logo-svg" style="background:linear-gradient(135deg,rgba(14,122,140,.3),rgba(14,122,140,.1));border:1.5px solid rgba(14,163,184,.35)">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="9" r="3.5" stroke="#14a3b8" stroke-width="1.6" fill="none"/>
+              <circle cx="18" cy="9" r="3.5" stroke="#14a3b8" stroke-width="1.6" fill="none"/>
+              <path d="M4 22c0-3.3 2.7-6 6-6h8c3.3 0 6 2.7 6 6" stroke="#14a3b8" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+              <path d="M14 14v4M12 16h4" stroke="#4dc4d4" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <h3>Probono Network</h3>
+        <p>100+ verified advocates and 300+ NGO partners providing free legal assistance across 14 Kenyan counties.</p>
+        <a class="bc-link" href="#" onclick="scrollToSection('probono')">Join Network →</a>
+      </div>
+
+      <!-- ★ COURT ACTIVATIONS — with centered SVG logo -->
+      <div class="bc" data-reveal data-delay="200">
+        <div class="bc-logo-wrap">
+          <div class="bc-logo-svg" style="background:linear-gradient(135deg,rgba(37,77,114,.35),rgba(37,77,114,.12));border:1.5px solid rgba(58,100,144,.4)">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="20" width="22" height="2" rx="1" fill="#3a6490"/>
+              <rect x="12" y="5" width="4" height="15" rx="1" fill="none" stroke="#8aa5be" stroke-width="1.5"/>
+              <rect x="6" y="10" width="3.5" height="10" rx="1" fill="none" stroke="#8aa5be" stroke-width="1.3"/>
+              <rect x="18.5" y="10" width="3.5" height="10" rx="1" fill="none" stroke="#8aa5be" stroke-width="1.3"/>
+              <path d="M5 7.5h18" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M14 3l9 4.5H5L14 3z" fill="rgba(201,168,76,.2)" stroke="#c9a84c" stroke-width="1.3"/>
+            </svg>
+          </div>
+        </div>
+        <h3>Court Activations</h3>
+        <p>Direct integration with Kenyan court systems. File submissions, track hearings, and receive alerts.</p>
+        <a class="bc-link" href="#" onclick="showPage('usertype')">Learn More →</a>
+      </div>
+
+      <!-- ★ SECURE & PRIVATE — with centered SVG logo -->
+      <div class="bc gold-tint" data-reveal data-delay="300">
+        <div class="bc-logo-wrap">
+          <div class="bc-logo-svg" style="background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.04));border:1.5px solid rgba(201,168,76,.28)">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 3L5 7v7c0 5.3 3.8 10.2 9 11.4C19.2 24.2 23 19.3 23 14V7L14 3z" stroke="#c9a84c" stroke-width="1.6" fill="rgba(201,168,76,.08)" stroke-linejoin="round"/>
+              <path d="M10 14l2.5 2.5 5.5-5.5" stroke="#dfc278" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <h3>Secure &amp; Private</h3>
+        <p>End-to-end encryption, attorney-client privilege protection, and ISO 27001-aligned data security. Your legal matters stay private.</p>
+        <a class="bc-link" href="#">Security Details →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section class="section sec-dark" id="user-types">
+  <div class="container">
+    <div class="sec-header" data-reveal>
+      <div class="eyebrow light">Who We Serve</div>
+      <h2 class="sec-title">Tailored For<br/><em>Every Legal Actor</em></h2>
+      <p class="sec-body">Different user types get different tools, dashboards, and workflows.</p>
+    </div>
+    <div class="user-types-grid">
+      <div class="ut-card" onclick="selectUserType(this,'citizen')">
+        <div class="ut-emoji">👤</div>
+        <h4>Citizens</h4>
+        <ul class="ut-list">
+          <li>AI Legal Chat (multilingual)</li>
+          <li>Case Assessment & Scoring</li>
+          <li>Document Generation</li>
+          <li>Lawyer Matching</li>
+          <li>Legal Health Check</li>
+        </ul>
+        <button class="btn btn-gold btn-full sm" onclick="showPage('register')">Register as Citizen</button>
+      </div>
+      <div class="ut-card" onclick="selectUserType(this,'lawyer')">
+        <div class="ut-emoji">⚖️</div>
+        <h4>Legal Practitioners</h4>
+        <ul class="ut-list">
+          <li>Precedent & Case Search</li>
+          <li>Advanced Document Suite</li>
+          <li>Client Case Manager</li>
+          <li>Court Filing Integration</li>
+          <li>AI Research Assistant</li>
+        </ul>
+        <button class="btn btn-gold btn-full sm" onclick="showPage('register')">Register as Lawyer</button>
+      </div>
+      <div class="ut-card" onclick="selectUserType(this,'ngo')">
+        <div class="ut-emoji">🏢</div>
+        <h4>NGOs & Probono</h4>
+        <ul class="ut-list">
+          <li>Case Intake Management</li>
+          <li>County Coverage Analytics</li>
+          <li>Impact Reporting Suite</li>
+          <li>Beneficiary Tracking</li>
+          <li>Partner Network Access</li>
+        </ul>
+        <button class="btn btn-gold btn-full sm" onclick="showPage('register')">Register as NGO</button>
+      </div>
+      <div class="ut-card" onclick="selectUserType(this,'corporate')">
+        <div class="ut-emoji">🏛️</div>
+        <h4>Corporates & Gov</h4>
+        <ul class="ut-list">
+          <li>Contract Intelligence AI</li>
+          <li>Compliance Monitor</li>
+          <li>Regulatory Risk Dashboard</li>
+          <li>Multi-user Workspace</li>
+          <li>API Integration</li>
+        </ul>
+        <button class="btn btn-gold btn-full sm" onclick="showPage('register')">Request Enterprise</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="sec-header" data-reveal>
+      <div class="eyebrow">Process</div>
+      <h2 class="sec-title">From Question to<br/><em>Legal Clarity</em></h2>
+    </div>
+    <div class="hiw-steps">
+      <div class="hiw-step" data-reveal>
+        <span class="hiw-num">01</span>
+        <div class="hiw-ico">💬</div>
+        <h4>Describe Your Matter</h4>
+        <p>Type or speak your legal issue in any language. Nomos AI understands context and jurisdiction.</p>
+      </div>
+      <div class="hiw-conn"><div class="hiw-line"></div></div>
+      <div class="hiw-step" data-reveal data-delay="100">
+        <span class="hiw-num">02</span>
+        <div class="hiw-ico">🧠</div>
+        <h4>AI Analysis</h4>
+        <p>Cross-references Kenya Law, constitutional provisions, and 50,000+ case precedents instantly.</p>
+      </div>
+      <div class="hiw-conn"><div class="hiw-line"></div></div>
+      <div class="hiw-step" data-reveal data-delay="200">
+        <span class="hiw-num">03</span>
+        <div class="hiw-ico">📊</div>
+        <h4>Receive Report</h4>
+        <p>Get a structured assessment: strength score, risks, recommendations, and document templates.</p>
+      </div>
+      <div class="hiw-conn"><div class="hiw-line"></div></div>
+      <div class="hiw-step" data-reveal data-delay="300">
+        <span class="hiw-num">04</span>
+        <div class="hiw-ico">⚖️</div>
+        <h4>Take Action</h4>
+        <p>Generate documents, connect with a matched lawyer, or escalate with confidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBONO NETWORK -->
+<section class="section sec-dark" id="probono">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center" data-reveal>
+      <div>
+        <div class="eyebrow">Social Impact</div>
+        <h2 class="sec-title">Join Our<br/><em>Probono Network</em></h2>
+        <p class="sec-body" style="margin-bottom:28px">Be part of an impact-driven movement making justice accessible for all. Our platform is powered by a growing network of legal professionals, NGOs, and community leaders across Kenya.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
+          <div style="background:var(--surf2);border:1px solid var(--gbord);border-radius:var(--r16);padding:20px;text-align:center"><div style="font-family:var(--serif);font-size:2rem;color:var(--g400);font-weight:700">100+</div><div style="font-size:.78rem;color:var(--s400)">Probono Lawyers</div></div>
+          <div style="background:var(--surf2);border:1px solid var(--gbord);border-radius:var(--r16);padding:20px;text-align:center"><div style="font-family:var(--serif);font-size:2rem;color:var(--g400);font-weight:700">14</div><div style="font-size:.78rem;color:var(--s400)">Counties Served</div></div>
+          <div style="background:var(--surf2);border:1px solid var(--gbord);border-radius:var(--r16);padding:20px;text-align:center"><div style="font-family:var(--serif);font-size:2rem;color:var(--g400);font-weight:700">300+</div><div style="font-size:.78rem;color:var(--s400)">NGO Partners</div></div>
+          <div style="background:var(--surf2);border:1px solid var(--gbord);border-radius:var(--r16);padding:20px;text-align:center"><div style="font-family:var(--serif);font-size:2rem;color:var(--g400);font-weight:700">4.9★</div><div style="font-size:.78rem;color:var(--s400)">Average Rating</div></div>
+        </div>
+        <button class="btn btn-gold lg" onclick="showPage('register')">Join the Network</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="background:var(--surf2);border:1px solid var(--gbord);border-radius:var(--r16);padding:20px;display:flex;gap:14px;align-items:flex-start"><div style="font-size:1.5rem">🏛️</div><div><div style="font-weight:700;color:#fff;margin-bottom:4px">Court Activations</div><div style="font-size:.82rem;color:var(--s400)">Direct presence at Nairobi, Mombasa, Kisumu, and Nakuru law courts providing free legal aid to unrepresented litigants.</div></div></div>
+        <div style="background:var(--surf2);border:1px solid var(--gbord);border-radius:var(--r16);padding:20px;display:flex;gap:14px;align-items:flex-start"><div style="font-size:1.5rem">🔓</div><div><div style="font-weight:700;color:#fff;margin-bottom:4px">Prison Activations</div><div style="font-size:.82rem;color:var(--s400)">Legal literacy programmes and AI-assisted case reviews for incarcerated individuals across Kenyan prisons.</div></div></div>
+        <div style="background:var(--surf2);border:1px solid var(--gbord);border-radius:var(--r16);padding:20px;display:flex;gap:14px;align-items:flex-start"><div style="font-size:1.5rem">🌍</div><div><div style="font-weight:700;color:#fff;margin-bottom:4px">Community Clinics</div><div style="font-size:.82rem;color:var(--s400)">Mobile legal clinics travelling to underserved counties, powered by Nomos AI and volunteer advocates.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="sec-header" data-reveal>
+      <div class="eyebrow">Testimonials</div>
+      <h2 class="sec-title">Voices from<br/><em>Across Kenya</em></h2>
+    </div>
+    <div class="testi-wrap">
+      <div class="testi-card visible">
+        <div class="testi-quote">"Nomos AI helped me understand my tenant rights in minutes. I had been paying illegal charges for two years without knowing. The AI generated my demand letter and I got a full refund within 3 weeks."</div>
+        <div class="testi-author">
+          <div class="ta-av" style="background:linear-gradient(135deg,#1e3a5f,#2d7a8e)">JM</div>
+          <div><div class="ta-name">James Mwangi</div><div class="ta-role">Tenant Rights Case · Nairobi</div></div>
+          <div class="ta-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"As an advocate, Nomos AI has cut my legal research time by over 60%. The Kenya Law integration surfaces the right case precedents instantly, and my clients appreciate the transparent AI citations in every report."</div>
+        <div class="testi-author">
+          <div class="ta-av" style="background:linear-gradient(135deg,#3d1a5f,#6b2d8e)">AW</div>
+          <div><div class="ta-name">Advocate Aisha Wanjiru</div><div class="ta-role">Legal Practitioner · Mombasa</div></div>
+          <div class="ta-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"Our NGO serves rural communities with no access to lawyers. Nomos AI's Swahili interface and voice support has been transformational — we've helped over 300 families understand their land rights in Turkana county."</div>
+        <div class="testi-author">
+          <div class="ta-av" style="background:linear-gradient(135deg,#1a4731,#2d7a52)">FK</div>
+          <div><div class="ta-name">Faith Kamau</div><div class="ta-role">Programme Director · Legal Aid Kenya</div></div>
+          <div class="ta-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="testi-nav">
+        <button class="tn-btn" onclick="prevTesti()">←</button>
+        <div class="tn-dots">
+          <div class="tn-dot active" onclick="goTesti(0)"></div>
+          <div class="tn-dot" onclick="goTesti(1)"></div>
+          <div class="tn-dot" onclick="goTesti(2)"></div>
+        </div>
+        <button class="tn-btn" onclick="nextTesti()">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="cta-glow-bg"></div>
+  <div class="container cta-inner">
+    <div data-reveal>
+      <div class="eyebrow">Get Started</div>
+      <h2 class="cta-title">Your Rights Deserve<br/><em>Intelligence.</em></h2>
+      <p class="cta-sub">Join thousands of Kenyans accessing fair, affordable, AI-powered legal guidance. Free to start — no credit card required.</p>
+      <div class="cta-btns">
+        <button class="btn btn-gold lg" onclick="showPage('usertype')">Create Free Account</button>
+        <button class="btn btn-outline lg" onclick="showPage('login')">Login →</button>
+      </div>
+    </div>
+    <div data-reveal data-delay="100">
+      <div class="cta-phone glass">
+        <div class="cp-head">Nomos AI — My Wakili</div>
+        <div class="cp-chat">
+          <div class="cp-bub ai">Habari! How can I help with your legal matter today?</div>
+          <div class="cp-bub usr">I was unfairly dismissed.</div>
+          <div class="cp-bub ai">Under the Employment Act 2007 (Section 45), you may have grounds for wrongful dismissal. Let me assess your case…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section sec-dark" id="contact">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start" data-reveal>
+      <div>
+        <div class="eyebrow">Contact</div>
+        <h2 class="sec-title">Get In <em>Touch</em></h2>
+        <p class="sec-body" style="margin-bottom:32px">Whether you have questions about our services, want to join our probono network, or need enterprise solutions, we're here to help.</p>
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:40px;height:40px;border-radius:var(--r8);background:linear-gradient(135deg,var(--g400),var(--g200));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;color:var(--n900)">📧</div><div><div style="font-weight:600;color:#fff;margin-bottom:3px">Email</div><a href="mailto:Relations@memeyai.com" style="color:var(--s400);font-size:.88rem">Relations@memeyai.com</a></div></div>
+          <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:40px;height:40px;border-radius:var(--r8);background:linear-gradient(135deg,var(--g400),var(--g200));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;color:var(--n900)">📞</div><div><div style="font-weight:600;color:#fff;margin-bottom:3px">Phone</div><a href="tel:+254794153677" style="color:var(--s400);font-size:.88rem">+254 794 153 677</a></div></div>
+          <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:40px;height:40px;border-radius:var(--r8);background:linear-gradient(135deg,var(--g400),var(--g200));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;color:var(--n900)">📍</div><div><div style="font-weight:600;color:#fff;margin-bottom:3px">Location</div><span style="color:var(--s400);font-size:.88rem">Nairobi, Kenya</span></div></div>
+        </div>
+      </div>
+      <div style="background:var(--surf2);border:1px solid var(--gbord);border-radius:var(--r20);padding:32px">
+        <h3 style="font-family:var(--serif);font-size:1.4rem;color:#fff;margin-bottom:6px">Send a Message</h3>
+        <p style="font-size:.84rem;color:var(--s400);margin-bottom:22px">We'll respond within 24 hours.</p>
+        <div class="form-row"><div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" placeholder="John"/></div><div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" placeholder="Doe"/></div></div>
+        <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="john@example.com"/></div>
+        <div class="form-group"><label class="form-label">Message</label><textarea class="form-input" rows="4" placeholder="How can we help you?" style="resize:vertical"></textarea></div>
+        <button class="btn btn-gold btn-full" onclick="alert('Message sent! We will be in touch within 24 hours.')">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container foot-inner">
+    <div class="foot-brand">
+      <div class="nav-logo" style="margin-bottom:12px"><div class="logo-shield">⚖</div><span class="logo-wordmark">Nomos<em>AI</em></span></div>
+      <p>Kenya's AI-powered legal intelligence platform. Empowering legal access across Africa.</p>
+      <div class="foot-socials">
+        <a href="https://www.linkedin.com/company/n-omosai/" target="_blank">in</a>
+        <a href="#">𝕏</a>
+        <a href="#">f</a>
+        <a href="#">📷</a>
+      </div>
+    </div>
+    <div class="foot-col"><h5>Platform</h5><ul><li><a href="#" onclick="showPage('dashboard')">AI Legal Chat</a></li><li><a href="#" onclick="showPage('usertype')">Case Assessment</a></li><li><a href="#" onclick="showPage('usertype')">Document Generator</a></li><li><a href="#" onclick="scrollToSection('probono')">Probono Network</a></li><li><a href="#" onclick="scrollToSection('probono')">Prison Activations</a></li></ul></div>
+    <div class="foot-col"><h5>Solutions</h5><ul><li><a href="#" onclick="showPage('register')">For Citizens</a></li><li><a href="#" onclick="showPage('register')">For Lawyers</a></li><li><a href="#" onclick="showPage('register')">For NGOs</a></li><li><a href="#" onclick="showPage('register')">For Corporates</a></li><li><a href="#" onclick="showPage('register')">Law Firms</a></li></ul></div>
+    <div class="foot-col"><h5>Company</h5><ul><li><a href="#">About Us</a></li><li><a href="#" onclick="scrollToSection('contact')">Contact</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Compliance</a></li></ul></div>
+  </div>
+  <div class="foot-bottom">
+    <div class="container">
+      <p>© 2025 Nomos AI. All rights reserved. | Empowering legal access across Africa. | Not a substitute for legal advice.</p>
+      <div class="foot-right"><span>🇰🇪 Nairobi, Kenya</span><a href="mailto:Relations@memeyai.com" style="color:var(--s400)">Relations@memeyai.com</a></div>
+    </div>
+  </div>
+</footer>
+</div><!-- end page-landing -->
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: USER TYPE SELECTOR
+     ★ CHANGE: Added "Student" card at the top (col-span 2),
+       then Individual Citizen and Legal Practitioner on the same row,
+       then NGO and Corporate below.
+═══════════════════════════════════════════════════ -->
+<div class="page" id="page-usertype">
+  <div class="auth-page" style="min-height:100vh;padding:100px 24px 60px">
+    <div class="auth-bg-glow r"></div>
+    <div class="auth-bg-glow l"></div>
+    <div style="position:relative;z-index:1;width:100%;max-width:700px">
+      <div style="text-align:center;margin-bottom:36px">
+        <div class="nav-logo" style="justify-content:center;margin-bottom:20px"><div class="logo-shield">⚖</div><span class="logo-wordmark">Nomos<em>AI</em></span></div>
+        <h2 style="font-family:var(--serif);font-size:2.2rem;color:#fff;margin-bottom:8px">I am registering as…</h2>
+        <p style="color:var(--s400);font-size:.92rem">Choose your profile type to get the right dashboard and tools</p>
+      </div>
+
+      <!-- ★ NEW: Student card on its own full-width row -->
+      <div style="margin-bottom:16px">
+        <div class="utype-btn" id="utype-student" onclick="pickType(this,'student')" style="display:flex;align-items:center;gap:18px;padding:20px 22px">
+          <span class="utype-emoji" style="margin-bottom:0;font-size:1.9rem;flex-shrink:0">🎓</span>
+          <div style="flex:1">
+            <span class="utype-name" style="font-size:.95rem">Student</span>
+            <span class="utype-desc">Access legal literacy resources, case study tools, moot court simulations, and guided research for law students and academic institutions</span>
+          </div>
+          <div style="flex-shrink:0;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.22);border-radius:20px;padding:3px 12px;font-size:.7rem;font-weight:700;color:var(--g300);white-space:nowrap">New</div>
+        </div>
+      </div>
+
+      <!-- Individual Citizen + Legal Practitioner row -->
+      <div class="utype-grid" style="grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="utype-btn selected" id="utype-citizen" onclick="pickType(this,'citizen')">
+          <span class="utype-emoji">👤</span>
+          <span class="utype-name">Individual Citizen</span>
+          <span class="utype-desc">Legal chat, case assessment, document generation, and lawyer matching</span>
+        </div>
+        <div class="utype-btn" id="utype-lawyer" onclick="pickType(this,'lawyer')">
+          <span class="utype-emoji">⚖️</span>
+          <span class="utype-name">Legal Practitioner</span>
+          <span class="utype-desc">Precedent search, advanced documents, client management, court filing</span>
+        </div>
+      </div>
+
+      <!-- NGO + Corporate row -->
+      <div class="utype-grid" style="grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px">
+        <div class="utype-btn" id="utype-ngo" onclick="pickType(this,'ngo')">
+          <span class="utype-emoji">🏢</span>
+          <span class="utype-name">NGO / Probono</span>
+          <span class="utype-desc">Case intake, beneficiary tracking, impact reporting, network access</span>
+        </div>
+        <div class="utype-btn" id="utype-corporate" onclick="pickType(this,'corporate')">
+          <span class="utype-emoji">🏛️</span>
+          <span class="utype-name">Corporate / Government</span>
+          <span class="utype-desc">Contract intelligence, compliance monitor, regulatory dashboard, API</span>
+        </div>
+      </div>
+
+      <button class="btn btn-gold btn-full lg" onclick="showPage('register')" style="margin-bottom:14px">Continue →</button>
+      <p style="text-align:center;font-size:.84rem;color:var(--s400)">Already have an account? <a href="#" onclick="showPage('login')" style="color:var(--g400);font-weight:600">Sign in</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: REGISTER
+     ★ CHANGE: Full validation — all fields required before proceeding
+═══════════════════════════════════════════════════ -->
+<div class="page" id="page-register">
+  <div class="auth-page" style="padding-top:100px">
+    <div class="auth-bg-glow r"></div>
+    <div class="auth-bg-glow l"></div>
+    <div class="auth-card">
+      <div class="auth-logo"><div class="nav-logo"><div class="logo-shield">⚖</div><span class="logo-wordmark">Nomos<em>AI</em></span></div></div>
+      <h2 class="auth-title">Create Account</h2>
+      <p class="auth-sub">Join Kenya's legal intelligence platform — free to start</p>
+
+      <!-- Alert banner -->
+      <div class="form-alert" id="regAlert">Please fill in all required fields to continue.</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First Name <span style="color:var(--err)">*</span></label>
+          <input class="form-input" id="regFirst" type="text" placeholder="John" oninput="clearErr(this,'regFirstErr')"/>
+          <div class="field-err" id="regFirstErr">First name is required.</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name <span style="color:var(--err)">*</span></label>
+          <input class="form-input" id="regLast" type="text" placeholder="Doe" oninput="clearErr(this,'regLastErr')"/>
+          <div class="field-err" id="regLastErr">Last name is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address <span style="color:var(--err)">*</span></label>
+        <input class="form-input" id="regEmail" type="email" placeholder="john@example.com" oninput="clearErr(this,'regEmailErr')"/>
+        <div class="field-err" id="regEmailErr">A valid email address is required.</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone (optional)</label>
+        <input class="form-input" id="regPhone" type="tel" placeholder="+254 7XX XXX XXX"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password <span style="color:var(--err)">*</span></label>
+        <input class="form-input" id="regPass" type="password" placeholder="Min. 8 characters" oninput="clearErr(this,'regPassErr')"/>
+        <div class="field-err" id="regPassErr">Password must be at least 8 characters.</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Confirm Password <span style="color:var(--err)">*</span></label>
+        <input class="form-input" id="regPass2" type="password" placeholder="Repeat password" oninput="clearErr(this,'regPass2Err')"/>
+        <div class="field-err" id="regPass2Err">Passwords do not match.</div>
+      </div>
+      <div class="form-group" style="margin-bottom:22px">
+        <label class="form-check" id="regTermsLabel">
+          <input type="checkbox" id="regTerms" style="accent-color:var(--g400)" onchange="clearTermsErr()"/>
+          I agree to the <a href="#" style="color:var(--g400)">Terms of Service</a> and <a href="#" style="color:var(--g400)">Privacy Policy</a>
+        </label>
+        <div class="field-err" id="regTermsErr" style="padding-left:24px">You must accept the terms to continue.</div>
+      </div>
+      <button class="btn btn-gold btn-full lg" onclick="validateRegister()">Create Account →</button>
+      <p class="form-link">Already have an account? <a href="#" onclick="showPage('login')">Sign in</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: LOGIN
+     ★ CHANGE: Validation — email and password required before proceeding
+═══════════════════════════════════════════════════ -->
+<div class="page" id="page-login">
+  <div class="auth-page" style="padding-top:100px">
+    <div class="auth-bg-glow r"></div>
+    <div class="auth-bg-glow l"></div>
+    <div class="auth-card">
+      <div class="auth-logo"><div class="nav-logo"><div class="logo-shield">⚖</div><span class="logo-wordmark">Nomos<em>AI</em></span></div></div>
+      <h2 class="auth-title">Welcome Back</h2>
+      <p class="auth-sub">Sign in to your Nomos AI account</p>
+
+      <!-- Alert banner -->
+      <div class="form-alert" id="loginAlert">Please enter your email and password to sign in.</div>
+
+      <div class="form-group">
+        <label class="form-label">Email Address <span style="color:var(--err)">*</span></label>
+        <input class="form-input" id="loginEmail" type="email" placeholder="you@example.com" oninput="clearErr(this,'loginEmailErr')"/>
+        <div class="field-err" id="loginEmailErr">Please enter a valid email address.</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password <span style="color:var(--err)">*</span></label>
+        <input class="form-input" id="loginPass" type="password" placeholder="••••••••" oninput="clearErr(this,'loginPassErr')" onkeydown="if(event.key==='Enter')validateLogin()"/>
+        <div class="field-err" id="loginPassErr">Password is required.</div>
+      </div>
+      <div class="forgot-row" style="margin-bottom:22px">
+        <label class="form-check" style="margin-bottom:0"><input type="checkbox" style="accent-color:var(--g400)"/> <span>Remember me</span></label>
+        <a href="#" style="font-size:.8rem;color:var(--g400)">Forgot password?</a>
+      </div>
+      <button class="btn btn-gold btn-full lg" onclick="validateLogin()">Sign In →</button>
+      <div class="form-divider" style="margin:20px 0">or continue with</div>
+      <button class="btn btn-outline btn-full" style="margin-bottom:14px" onclick="showPage('dashboard')">🇬 Continue with Google</button>
+      <p class="form-link">Don't have an account? <a href="#" onclick="showPage('usertype')">Get Started</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: DASHBOARD
+═══════════════════════════════════════════════════ -->
+<div class="page" id="page-dashboard">
+  <div class="dash-layout">
+    <!-- SIDEBAR -->
+    <aside class="dash-sidebar" id="dashSidebar">
+      <div class="ds-top">
+        <div class="ds-user-card">
+          <div class="dsu-av">JM</div>
+          <div><div class="dsu-name">James Mwangi</div><div class="dsu-type">Citizen Account</div></div>
+        </div>
+        <div class="ds-section-lbl">Main Menu</div>
+        <nav class="ds-nav">
+          <div class="ds-nav-item active" onclick="switchDashTab('overview')"><div class="ds-nav-icon">🏠</div>Overview</div>
+          <div class="ds-nav-item" onclick="switchDashTab('chat')"><div class="ds-nav-icon">💬</div>AI Legal Chat</div>
+          <div class="ds-nav-item" onclick="switchDashTab('cases')"><div class="ds-nav-icon">⚖️</div>My Cases</div>
+          <div class="ds-nav-item" onclick="switchDashTab('documents')"><div class="ds-nav-icon">📄</div>Document Vault</div>
+          <div class="ds-nav-item" onclick="switchDashTab('lawyers')"><div class="ds-nav-icon">🤝</div>Lawyer Matching</div>
+          <div class="ds-nav-item" onclick="switchDashTab('health')"><div class="ds-nav-icon">❤️</div>Legal Health Check</div>
+          <div class="ds-section-lbl">Tools</div>
+          <div class="ds-nav-item" onclick="switchDashTab('assess')"><div class="ds-nav-icon">🔍</div>Case Assessment</div>
+          <div class="ds-nav-item" onclick="switchDashTab('gendoc')"><div class="ds-nav-icon">📝</div>Generate Document</div>
+          <div class="ds-section-lbl">Account</div>
+          <div class="ds-nav-item" onclick="switchDashTab('settings')"><div class="ds-nav-icon">⚙️</div>Settings</div>
+        </nav>
+      </div>
+      <div class="ds-bottom">
+        <div class="ds-nav-item" onclick="showPage('landing')" style="color:var(--err)"><div class="ds-nav-icon">←</div>Sign Out</div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="dash-main" id="dashMain">
+      <div class="dash-topbar">
+        <button onclick="toggleSidebar()" style="background:none;border:none;cursor:pointer;color:var(--s300);font-size:1.1rem;padding:4px;margin-right:4px">☰</button>
+        <div>
+          <div class="dtb-title" id="dashTitle">Overview</div>
+          <div class="dtb-breadcrumb">Nomos AI / <span id="dashBreadcrumb">Dashboard</span></div>
+        </div>
+        <div class="dtb-spacer"></div>
+        <div class="dtb-actions">
+          <button class="cmd-bar-btn" onclick="showCmd()">⌘K Search</button>
+          <div class="notif-btn"><span>🔔</span><div class="notif-badge">3</div></div>
+          <div class="dsu-av" style="width:36px;height:36px;font-size:.78rem;cursor:pointer">JM</div>
+        </div>
+      </div>
+
+      <div class="dash-content">
+
+        <!-- ── OVERVIEW PANEL ── -->
+        <div class="dash-panel active" id="panel-overview">
+          <div class="dash-greeting">
+            <h2>Good morning, James 👋</h2>
+            <p>You have 1 active case and 2 documents awaiting review.</p>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi-card" style="--kpi-color:var(--g400)"><div class="kpi-label">Active Cases</div><div class="kpi-num">1</div><div class="kpi-change kpi-up">↑ New this week</div><div class="kpi-icon">⚖️</div></div>
+            <div class="kpi-card" style="--kpi-color:var(--t400)"><div class="kpi-label">Documents</div><div class="kpi-num">4</div><div class="kpi-change kpi-down">2 need review</div><div class="kpi-icon">📄</div></div>
+            <div class="kpi-card" style="--kpi-color:var(--suc)"><div class="kpi-label">Case Strength</div><div class="kpi-num">76%</div><div class="kpi-change kpi-up">↑ 14% this week</div><div class="kpi-icon">📊</div></div>
+            <div class="kpi-card" style="--kpi-color:var(--warn)"><div class="kpi-label">Lawyer Matches</div><div class="kpi-num">3</div><div class="kpi-change" style="color:var(--s400)">Awaiting response</div><div class="kpi-icon">🤝</div></div>
+          </div>
+          <div class="dash-grid">
+            <div class="dash-card">
+              <div class="dc-header"><div class="dc-title">📅 Active Case Timeline</div><div class="dc-action" onclick="switchDashTab('cases')">View All →</div></div>
+              <div class="dc-body">
+                <div class="tl-item-name" style="font-size:.8rem;font-weight:700;color:var(--g400);margin-bottom:14px;padding:8px 12px;background:rgba(201,168,76,.07);border-radius:var(--r8)">⚖️ Tenancy Dispute — Kiambu Landlord</div>
+                <div class="timeline">
+                  <div class="tl-item"><div class="tl-dot done">✓</div><div class="tl-content"><div class="tl-title">Initial AI Assessment</div><div class="tl-date">Dec 1, 2025</div><div class="tl-note">Case strength: 76%. 3 precedents found. Demand letter generated.</div></div></div>
+                  <div class="tl-item"><div class="tl-dot done">✓</div><div class="tl-content"><div class="tl-title">Demand Letter Sent</div><div class="tl-date">Dec 5, 2025</div><div class="tl-note">Formal notice dispatched. 14-day response window.</div></div></div>
+                  <div class="tl-item"><div class="tl-dot active">→</div><div class="tl-content"><div class="tl-title">Awaiting Landlord Response</div><div class="tl-date">Due: Dec 19, 2025</div><div class="tl-note">Deadline approaching. Consider escalation to small claims court.</div></div></div>
+                  <div class="tl-item"><div class="tl-dot pending">○</div><div class="tl-content"><div class="tl-title">Legal Action (if needed)</div><div class="tl-date">Pending</div><div class="tl-note">Lawyer matched and on standby. Filing fee: KES 2,000.</div></div></div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:20px">
+              <div class="dash-card">
+                <div class="dc-header"><div class="dc-title">⚡ Quick Actions</div></div>
+                <div class="dc-body">
+                  <div class="qa-grid">
+                    <div class="qa-btn" onclick="switchDashTab('chat')"><div class="qa-btn-icon">💬</div><div class="qa-btn-label">Ask Nomos AI</div><div class="qa-btn-sub">Start consultation</div></div>
+                    <div class="qa-btn" onclick="switchDashTab('gendoc')"><div class="qa-btn-icon">📄</div><div class="qa-btn-label">New Document</div><div class="qa-btn-sub">Generate legal doc</div></div>
+                    <div class="qa-btn" onclick="switchDashTab('assess')"><div class="qa-btn-icon">🔍</div><div class="qa-btn-label">Assess Case</div><div class="qa-btn-sub">AI case analysis</div></div>
+                    <div class="qa-btn" onclick="switchDashTab('lawyers')"><div class="qa-btn-icon">🤝</div><div class="qa-btn-label">Find Lawyer</div><div class="qa-btn-sub">Probono or paid</div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="dash-card">
+                <div class="dc-header"><div class="dc-title">🕐 Recent Activity</div></div>
+                <div class="dc-body">
+                  <div class="activity-feed">
+                    <div class="af-item"><div class="af-dot gold"></div><div><div class="af-text">Demand letter <strong style="color:#fff">generated</strong> for tenancy dispute</div><div class="af-time">2 hours ago</div></div></div>
+                    <div class="af-item"><div class="af-dot teal"></div><div><div class="af-text">Lawyer <strong style="color:#fff">Adv. Sarah Njoroge</strong> accepted your match request</div><div class="af-time">Yesterday</div></div></div>
+                    <div class="af-item"><div class="af-dot green"></div><div><div class="af-text">Case strength updated to <strong style="color:var(--suc)">76%</strong> after new evidence</div><div class="af-time">3 days ago</div></div></div>
+                    <div class="af-item"><div class="af-dot gold"></div><div><div class="af-text">Legal Health Check completed — score: <strong style="color:#fff">68/100</strong></div><div class="af-time">1 week ago</div></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CHAT PANEL ── -->
+        <div class="dash-panel" id="panel-chat">
+          <div class="dash-greeting"><h2>💬 AI Legal Chat</h2><p>Ask Nomos AI anything — in English, Swahili, French, Arabic, or Spanish.</p></div>
+          <div class="dash-card">
+            <div class="dc-header">
+              <div class="dc-title"><div class="live-dot sm" style="display:inline-block;margin-right:8px"></div>Nomos AI — Active</div>
+              <div style="display:flex;gap:8px">
+                <select style="background:var(--surf3);border:1px solid var(--gbord);border-radius:var(--r8);padding:5px 10px;color:var(--s200);font-size:.78rem;outline:none"><option>🇬🇧 English</option><option>🇰🇪 Swahili</option><option>🇫🇷 French</option><option>🇸🇦 Arabic</option><option>🇪🇸 Spanish</option></select>
+                <button class="btn btn-ghost" style="font-size:.75rem;padding:5px 12px">📎 Upload Doc</button>
+              </div>
+            </div>
+            <div class="dash-chat-window">
+              <div class="dcw-messages" id="dcwMessages">
+                <div class="dcw-msg"><div class="hv-av ai" style="width:30px;height:30px;font-size:.68rem;flex-shrink:0">N</div><div class="dcw-bub ai">Hello James! I'm Nomos, your AI legal companion. I can help you with your tenancy dispute, draft documents, research case law, or answer any legal questions. What would you like to discuss today?</div></div>
+                <div class="dcw-msg"><div class="hv-av ai" style="width:30px;height:30px;font-size:.68rem;flex-shrink:0">N</div><div class="dcw-bub ai">💡 <strong style="color:var(--g300)">Quick tip:</strong> You can upload documents (PDF, Word) for me to review and analyse. I'll identify issues, suggest corrections, and flag any legal risks.</div></div>
+              </div>
+              <div class="dcw-footer">
+                <input class="dcw-input" id="dcwInput" type="text" placeholder="Ask a legal question…" onkeydown="if(event.key==='Enter')sendDashChat()"/>
+                <button class="btn btn-ghost" style="padding:10px;font-size:.85rem">🎙️</button>
+                <button class="btn btn-gold" onclick="sendDashChat()" style="padding:10px 18px">Send ↑</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CASES PANEL ── -->
+        <div class="dash-panel" id="panel-cases">
+          <div class="dash-greeting"><h2>⚖️ My Cases</h2><p>Track and manage all your legal matters in one place.</p></div>
+          <div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button class="btn btn-gold" onclick="switchDashTab('assess')">+ New Case Assessment</button></div>
+          <div class="dash-card">
+            <div class="dc-header"><div class="dc-title">Active Cases (1)</div></div>
+            <div class="dc-body">
+              <div style="background:var(--surf3);border:1px solid rgba(201,168,76,.2);border-radius:var(--r16);padding:20px;margin-bottom:12px">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
+                  <div><div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--g400);font-weight:700;margin-bottom:6px">CIVIL · TENANT RIGHTS</div><div style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:4px">Tenancy Dispute — Kiambu Landlord</div><div style="font-size:.8rem;color:var(--s400)">Opened Dec 1, 2025 · Kiambu County</div></div>
+                  <div style="text-align:center;flex-shrink:0"><div style="font-family:var(--serif);font-size:1.8rem;color:var(--g400);font-weight:700">76%</div><div style="font-size:.7rem;color:var(--s400)">Case Strength</div></div>
+                </div>
+                <div style="margin:14px 0;display:flex;gap:8px;flex-wrap:wrap">
+                  <span style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.22);color:var(--g300);font-size:.72rem;padding:3px 10px;border-radius:20px;font-weight:600">⏳ Awaiting Response</span>
+                  <span style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);color:var(--suc);font-size:.72rem;padding:3px 10px;border-radius:20px;font-weight:600">✓ Demand Letter Sent</span>
+                  <span style="background:rgba(37,77,114,.3);color:var(--s300);font-size:.72rem;padding:3px 10px;border-radius:20px;font-weight:600">Lawyer: Adv. Sarah Njoroge</span>
+                </div>
+                <div style="display:flex;gap:10px"><button class="btn btn-ghost" style="font-size:.8rem;padding:8px 16px" onclick="switchDashTab('chat')">💬 Discuss with AI</button><button class="btn btn-teal" style="font-size:.8rem;padding:8px 16px">📄 View Documents</button></div>
+              </div>
+              <div style="text-align:center;padding:20px;color:var(--s400);font-size:.88rem">No other active cases. <a href="#" onclick="switchDashTab('assess')" style="color:var(--g400);font-weight:600">Start a new assessment →</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── DOCUMENTS PANEL ── -->
+        <div class="dash-panel" id="panel-documents">
+          <div class="dash-greeting"><h2>📁 Document Vault</h2><p>All your legal documents, securely stored and AI-analysed.</p></div>
+          <div style="display:flex;justify-content:flex-end;gap:10px;margin-bottom:16px">
+            <button class="btn btn-ghost">📤 Upload</button>
+            <button class="btn btn-gold" onclick="switchDashTab('gendoc')">+ Generate Document</button>
+          </div>
+          <div class="dash-card">
+            <div class="dc-header"><div class="dc-title">Documents (4)</div><div class="dc-action">Filter</div></div>
+            <div class="dc-body">
+              <div class="doc-list">
+                <div class="doc-row"><div class="doc-ico">📜</div><div style="flex:1"><div class="doc-row-name">Tenancy_Demand_Letter_v2.pdf</div><div class="doc-row-meta">Generated by Nomos AI · Dec 5, 2025 · 3 pages</div></div><div class="doc-chip ok">✓ Sent</div></div>
+                <div class="doc-row"><div class="doc-ico">📋</div><div style="flex:1"><div class="doc-row-name">Original_Lease_Agreement_2023.pdf</div><div class="doc-row-meta">Uploaded · Nov 28, 2025 · 8 pages · AI Reviewed</div></div><div class="doc-chip warn">⚠ 2 Issues</div></div>
+                <div class="doc-row"><div class="doc-ico">📝</div><div style="flex:1"><div class="doc-row-name">Case_Assessment_Report_Dec2025.pdf</div><div class="doc-row-meta">Generated by Nomos AI · Dec 1, 2025 · 5 pages</div></div><div class="doc-chip ok">✓ Reviewed</div></div>
+                <div class="doc-row"><div class="doc-ico">✉️</div><div style="flex:1"><div class="doc-row-name">Landlord_Correspondence_Draft.docx</div><div class="doc-row-meta">Draft · Dec 10, 2025 · In progress</div></div><div class="doc-chip draft">📝 Draft</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── LAWYERS PANEL ── -->
+        <div class="dash-panel" id="panel-lawyers">
+          <div class="dash-greeting"><h2>🤝 Lawyer Matching</h2><p>AI-matched advocates based on your case type, location, and budget.</p></div>
+          <div class="dash-card" style="margin-bottom:20px">
+            <div class="dc-header"><div class="dc-title">Your Matches — Tenant Rights, Kiambu</div><div class="dc-action">Refresh</div></div>
+            <div class="dc-body">
+              <div class="match-list">
+                <div class="match-card">
+                  <div class="match-av" style="background:linear-gradient(135deg,#1e3a5f,#2d7a8e)">SN</div>
+                  <div style="flex:1"><div class="match-name">Adv. Sarah Njoroge</div><div class="match-spec">Tenant & Property Rights</div><div class="match-meta">Nairobi LS · 8 yrs exp · 4.9★ · KES 5,000–15,000</div></div>
+                  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><div class="match-badge avail">Available</div><button class="btn btn-gold sm" onclick="alert('Connection request sent to Adv. Sarah Njoroge!')">Connect</button></div>
+                </div>
+                <div class="match-card">
+                  <div class="match-av" style="background:linear-gradient(135deg,#2d1a5f,#5a2d8e)">KO</div>
+                  <div style="flex:1"><div class="match-name">Adv. Kevin Odhiambo</div><div class="match-spec">Civil & Housing Law</div><div class="match-meta">Nairobi LS · 12 yrs exp · 4.7★ · KES 3,000–10,000</div></div>
+                  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><div class="match-badge busy">In Hearing</div><button class="btn btn-ghost sm">Request</button></div>
+                </div>
+                <div class="match-card">
+                  <div class="match-av" style="background:linear-gradient(135deg,#1a4731,#2d7a52)">AM</div>
+                  <div style="flex:1"><div class="match-name">Adv. Amina Mohamed</div><div class="match-spec">Probono — LSK Network</div><div class="match-meta">Kiambu · 6 yrs exp · 4.8★ · FREE (Probono)</div></div>
+                  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><div class="match-badge avail">Available</div><button class="btn btn-gold sm" onclick="alert('Probono request sent to Adv. Amina Mohamed!')">Request</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── LEGAL HEALTH PANEL ── -->
+        <div class="dash-panel" id="panel-health">
+          <div class="dash-greeting"><h2>❤️ Legal Health Check</h2><p>A 6-dimension assessment of your overall legal wellbeing.</p></div>
+          <div class="dash-grid">
+            <div class="dash-card">
+              <div class="dc-header"><div class="dc-title">Your Legal Health Score</div><div class="dc-action">Retake →</div></div>
+              <div class="dc-body">
+                <div style="text-align:center;margin-bottom:24px">
+                  <div style="font-family:var(--serif);font-size:4rem;font-weight:700;color:var(--g400);line-height:1">68</div>
+                  <div style="font-size:.82rem;color:var(--s400);margin-top:4px">out of 100 — Moderate. Some areas need attention.</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:12px">
+                  <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:.8rem;color:var(--s200)">Employment Protection</span><span style="font-size:.8rem;color:var(--suc);font-weight:700">80%</span></div><div style="height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden"><div style="height:100%;width:80%;background:linear-gradient(90deg,var(--suc),#4ade80);border-radius:3px"></div></div></div>
+                  <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:.8rem;color:var(--s200)">Housing Security</span><span style="font-size:.8rem;color:var(--warn);font-weight:700">55%</span></div><div style="height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden"><div style="height:100%;width:55%;background:linear-gradient(90deg,var(--warn),#fbbf24);border-radius:3px"></div></div></div>
+                  <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:.8rem;color:var(--s200)">Estate Planning</span><span style="font-size:.8rem;color:var(--err);font-weight:700">20%</span></div><div style="height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden"><div style="height:100%;width:20%;background:linear-gradient(90deg,var(--err),#f87171);border-radius:3px"></div></div></div>
+                  <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:.8rem;color:var(--s200)">Legal Awareness</span><span style="font-size:.8rem;color:var(--g400);font-weight:700">70%</span></div><div style="height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden"><div style="height:100%;width:70%;background:linear-gradient(90deg,var(--g400),var(--g200));border-radius:3px"></div></div></div>
+                  <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:.8rem;color:var(--s200)">Legal Access</span><span style="font-size:.8rem;color:var(--g400);font-weight:700">65%</span></div><div style="height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden"><div style="height:100%;width:65%;background:linear-gradient(90deg,var(--g400),var(--g200));border-radius:3px"></div></div></div>
+                  <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:.8rem;color:var(--s200)">Dispute Risk</span><span style="font-size:.8rem;color:var(--warn);font-weight:700">60%</span></div><div style="height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden"><div style="height:100%;width:60%;background:linear-gradient(90deg,var(--warn),#fbbf24);border-radius:3px"></div></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="dash-card">
+              <div class="dc-header"><div class="dc-title">🎯 Recommendations</div></div>
+              <div class="dc-body" style="display:flex;flex-direction:column;gap:12px">
+                <div style="background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);border-radius:var(--r12);padding:14px"><div style="font-size:.82rem;font-weight:700;color:var(--err);margin-bottom:6px">⚠ Critical: Estate Planning</div><div style="font-size:.78rem;color:var(--s400)">You have no will or estate plan. This puts your assets at risk. <a href="#" onclick="switchDashTab('gendoc')" style="color:var(--g400)">Generate a will template →</a></div></div>
+                <div style="background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:var(--r12);padding:14px"><div style="font-size:.82rem;font-weight:700;color:var(--warn);margin-bottom:6px">⚡ Review Housing Documents</div><div style="font-size:.78rem;color:var(--s400)">Your lease has 2 flagged issues. <a href="#" onclick="switchDashTab('documents')" style="color:var(--g400)">Review now →</a></div></div>
+                <div style="background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);border-radius:var(--r12);padding:14px"><div style="font-size:.82rem;font-weight:700;color:var(--suc);margin-bottom:6px">✓ Good Employment Protection</div><div style="font-size:.78rem;color:var(--s400)">Your employment contract is solid and compliant with the Employment Act 2007.</div></div>
+                <button class="btn btn-gold btn-full" onclick="switchDashTab('chat')">💬 Discuss With Nomos AI</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ASSESS PANEL ── -->
+        <div class="dash-panel" id="panel-assess">
+          <div class="dash-greeting"><h2>🔍 Case Assessment</h2><p>Get an AI-powered analysis of your legal position.</p></div>
+          <div class="dash-card" style="max-width:680px">
+            <div class="dc-header"><div class="dc-title">New Case Assessment</div></div>
+            <div class="dc-body">
+              <div class="form-group"><label class="form-label">Case Category</label><select class="form-input"><option>Tenant / Landlord Rights</option><option>Employment Law</option><option>Land & Property</option><option>Family Law</option><option>Contract Dispute</option><option>Criminal Law</option><option>Immigration</option><option>Other</option></select></div>
+              <div class="form-group"><label class="form-label">Jurisdiction / County</label><select class="form-input"><option>Nairobi</option><option>Mombasa</option><option>Kiambu</option><option>Kisumu</option><option>Nakuru</option><option>Other</option></select></div>
+              <div class="form-group"><label class="form-label">Describe your situation</label><textarea class="form-input" rows="5" placeholder="Describe what happened, when it started, who is involved, and what outcome you are seeking…" style="resize:vertical"></textarea></div>
+              <div class="form-group"><label class="form-label">Evidence available</label>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <label style="display:flex;align-items:center;gap:8px;font-size:.84rem;color:var(--s300);cursor:pointer"><input type="checkbox" style="accent-color:var(--g400)"/> Written contracts or agreements</label>
+                  <label style="display:flex;align-items:center;gap:8px;font-size:.84rem;color:var(--s300);cursor:pointer"><input type="checkbox" style="accent-color:var(--g400)"/> Email / WhatsApp records</label>
+                  <label style="display:flex;align-items:center;gap:8px;font-size:.84rem;color:var(--s300);cursor:pointer"><input type="checkbox" style="accent-color:var(--g400)"/> Witness statements</label>
+                  <label style="display:flex;align-items:center;gap:8px;font-size:.84rem;color:var(--s300);cursor:pointer"><input type="checkbox" style="accent-color:var(--g400)"/> Photographs or video</label>
+                  <label style="display:flex;align-items:center;gap:8px;font-size:.84rem;color:var(--s300);cursor:pointer"><input type="checkbox" style="accent-color:var(--g400)"/> Official documents</label>
+                </div>
+              </div>
+              <button class="btn btn-gold btn-full lg" id="assessBtn" onclick="runAssessment()">🔍 Run AI Assessment</button>
+              <div id="assessResult" style="display:none;margin-top:20px;padding:20px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:var(--r16)">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px"><div style="font-family:var(--serif);font-size:2.5rem;font-weight:700;color:var(--g400)">72%</div><div><div style="font-size:.9rem;font-weight:700;color:#fff">Moderate-High Success Probability</div><div style="font-size:.78rem;color:var(--s400)">Based on 1,247 similar Kenyan cases</div></div></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px"><span style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);color:var(--suc);font-size:.72rem;padding:3px 10px;border-radius:20px;font-weight:600">Viable Case</span><span style="background:rgba(37,77,114,.3);color:var(--s300);font-size:.72rem;padding:3px 10px;border-radius:20px;font-weight:600">Civil Matter</span><span style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);color:var(--warn);font-size:.72rem;padding:3px 10px;border-radius:20px;font-weight:600">Medium Risk</span></div>
+                <div style="font-size:.82rem;color:var(--s400)">Recommend: Send formal demand letter, then escalate to Small Claims Court (Kiambu) if unresolved within 30 days.</div>
+                <div style="display:flex;gap:10px;margin-top:14px"><button class="btn btn-gold sm" onclick="switchDashTab('gendoc')">📄 Generate Demand Letter</button><button class="btn btn-ghost sm" onclick="switchDashTab('chat')">💬 Discuss with AI</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── GENERATE DOC PANEL ── -->
+        <div class="dash-panel" id="panel-gendoc">
+          <div class="dash-greeting"><h2>📝 Generate Document</h2><p>Create court-ready legal documents in minutes.</p></div>
+          <div style="display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:start">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--s400);font-weight:700;padding:8px 4px">Document Type</div>
+              <div class="doc-row active-doc" onclick="setDocType(this,'Tenancy Agreement')" style="padding:12px 14px;cursor:pointer;border-color:rgba(201,168,76,.3);background:rgba(201,168,76,.06)"><div class="doc-ico">🏠</div><div><div class="doc-row-name">Tenancy Agreement</div></div></div>
+              <div class="doc-row" onclick="setDocType(this,'Demand Letter')"><div class="doc-ico">✉️</div><div><div class="doc-row-name">Demand Letter</div></div></div>
+              <div class="doc-row" onclick="setDocType(this,'NDA')"><div class="doc-ico">🔒</div><div><div class="doc-row-name">NDA</div></div></div>
+              <div class="doc-row" onclick="setDocType(this,'Affidavit')"><div class="doc-ico">📋</div><div><div class="doc-row-name">Affidavit</div></div></div>
+              <div class="doc-row" onclick="setDocType(this,'Will & Testament')"><div class="doc-ico">📜</div><div><div class="doc-row-name">Will & Testament</div></div></div>
+              <div class="doc-row" onclick="setDocType(this,'Power of Attorney')"><div class="doc-ico">📝</div><div><div class="doc-row-name">Power of Attorney</div></div></div>
+            </div>
+            <div class="dash-card">
+              <div class="dc-header"><div class="dc-title" id="genDocTitle">Tenancy Agreement</div></div>
+              <div class="dc-body">
+                <div class="form-row"><div class="form-group"><label class="form-label">Landlord Full Name</label><input class="form-input" type="text" placeholder="e.g. Jane Kamau"/></div><div class="form-group"><label class="form-label">Tenant Full Name</label><input class="form-input" type="text" placeholder="e.g. John Otieno"/></div></div>
+                <div class="form-group"><label class="form-label">Property Address</label><input class="form-input" type="text" placeholder="Full property address, County"/></div>
+                <div class="form-row"><div class="form-group"><label class="form-label">Monthly Rent (KES)</label><input class="form-input" type="number" placeholder="e.g. 25,000"/></div><div class="form-group"><label class="form-label">Lease Start Date</label><input class="form-input" type="date"/></div></div>
+                <div class="form-row"><div class="form-group"><label class="form-label">Duration</label><select class="form-input"><option>6 months</option><option selected>1 year</option><option>2 years</option><option>Month-to-month</option></select></div><div class="form-group"><label class="form-label">Security Deposit</label><select class="form-input"><option>1 month</option><option selected>2 months</option><option>3 months</option></select></div></div>
+                <div class="form-group"><label class="form-label">Special Conditions</label><textarea class="form-input" rows="3" placeholder="Any special terms or conditions…" style="resize:vertical"></textarea></div>
+                <button class="btn btn-gold btn-full lg" id="genBtn" onclick="generateDoc()">📄 Generate Document</button>
+                <div id="genResult" style="display:none;margin-top:16px;padding:16px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:var(--r12)">
+                  <div style="color:var(--suc);font-weight:600;margin-bottom:10px">✅ Document generated successfully!</div>
+                  <div style="display:flex;gap:10px"><button class="btn btn-gold sm" onclick="alert('Downloading PDF…')">⬇ Download PDF</button><button class="btn btn-ghost sm" onclick="alert('Sent to your email!')">✉ Email</button><button class="btn btn-ghost sm" onclick="switchDashTab('documents')">📁 Save to Vault</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SETTINGS PANEL ── -->
+        <div class="dash-panel" id="panel-settings">
+          <div class="dash-greeting"><h2>⚙️ Account Settings</h2><p>Manage your profile, preferences, and security.</p></div>
+          <div class="dash-grid">
+            <div class="dash-card">
+              <div class="dc-header"><div class="dc-title">Profile Information</div></div>
+              <div class="dc-body">
+                <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;padding:16px;background:var(--surf3);border-radius:var(--r12)"><div class="dsu-av" style="width:56px;height:56px;font-size:1.2rem;border-radius:50%">JM</div><div><div style="font-weight:700;color:#fff;font-size:1rem">James Mwangi</div><div style="color:var(--g400);font-size:.8rem;font-weight:600">Citizen Account</div><div style="color:var(--s400);font-size:.78rem">Member since Dec 2025</div></div></div>
+                <div class="form-row"><div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" value="James"/></div><div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" value="Mwangi"/></div></div>
+                <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" value="james.mwangi@example.com"/></div>
+                <div class="form-group"><label class="form-label">Phone</label><input class="form-input" type="tel" value="+254 7XX XXX XXX"/></div>
+                <div class="form-group"><label class="form-label">County</label><select class="form-input"><option selected>Kiambu</option><option>Nairobi</option><option>Mombasa</option><option>Kisumu</option></select></div>
+                <button class="btn btn-gold" onclick="alert('Profile updated!')">Save Changes</button>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:18px">
+              <div class="dash-card">
+                <div class="dc-header"><div class="dc-title">Preferences</div></div>
+                <div class="dc-body" style="display:flex;flex-direction:column;gap:14px">
+                  <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:.88rem;color:var(--s200)">Default Language</span><select style="background:var(--surf3);border:1px solid var(--gbord);border-radius:var(--r8);padding:6px 10px;color:var(--s200);font-size:.82rem;outline:none"><option>English</option><option>Swahili</option><option>French</option></select></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:.88rem;color:var(--s200)">Email Notifications</span><div style="width:40px;height:22px;border-radius:11px;background:var(--g400);cursor:pointer;position:relative"><div style="width:18px;height:18px;border-radius:50%;background:#fff;position:absolute;right:2px;top:2px;transition:all .2s"></div></div></div>
+                  <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:.88rem;color:var(--s200)">SMS Alerts</span><div style="width:40px;height:22px;border-radius:11px;background:var(--surf4);cursor:pointer;border:1px solid var(--gbord);position:relative"><div style="width:18px;height:18px;border-radius:50%;background:var(--s400);position:absolute;left:2px;top:1px;transition:all .2s"></div></div></div>
+                </div>
+              </div>
+              <div class="dash-card">
+                <div class="dc-header"><div class="dc-title">Security</div></div>
+                <div class="dc-body" style="display:flex;flex-direction:column;gap:10px">
+                  <button class="btn btn-ghost btn-full" onclick="alert('Password reset email sent!')">🔒 Change Password</button>
+                  <button class="btn btn-ghost btn-full" onclick="alert('2FA setup initiated!')">🔐 Enable Two-Factor Auth</button>
+                  <button class="btn btn-danger btn-full" onclick="if(confirm('Are you sure?')) showPage('landing')">Sign Out All Devices</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end dash-content -->
+    </main>
+  </div><!-- end dash-layout -->
+</div><!-- end page-dashboard -->
+
+<script src="main.js"></script>
+</body>
+</html>
